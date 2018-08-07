@@ -203,6 +203,7 @@ MonoBehaviour:
   _flag: {fileID: 0}
   cameraTransform: {fileID: 0}
   cameraContainerTransform: {fileID: 0}
+  body: {fileID: 4975708347201624}
 --- !u!136 &136769716159339592
 CapsuleCollider:
   m_ObjectHideFlags: 1

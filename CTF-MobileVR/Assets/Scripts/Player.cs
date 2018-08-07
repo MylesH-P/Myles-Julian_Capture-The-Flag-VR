@@ -18,7 +18,7 @@ public class Player : NetworkBehaviour {
 
     public Transform cameraTransform;
     public Transform cameraContainerTransform;
-	//public Transform body;
+	public Transform body;
 
 	// Use this for initialization
 	public override void OnStartLocalPlayer() {
@@ -37,7 +37,7 @@ public class Player : NetworkBehaviour {
 
         cameraContainerTransform.position = transform.position;
 		cameraContainerTransform.parent = transform;
-        //cameraContainerTransform.parent = body;
+        cameraContainerTransform.parent = body;
 		cameraContainerTransform.localPosition = Vector3.zero;
 	}
     
