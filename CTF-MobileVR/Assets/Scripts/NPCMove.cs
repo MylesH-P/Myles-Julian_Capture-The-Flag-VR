@@ -10,11 +10,14 @@ public class NPCMove : NetworkBehaviour {
 	Transform[] _destination;
 	private int numDestinations;
 	private int cur;
-	private Transform target;
+	public Transform target;
 
 	private bool chasing;
 
 	NavMeshAgent _navMeshAgent;
+    
+	private float _mult;
+	private float boostTimer;
 
 
 	private void Start()
@@ -38,6 +41,13 @@ public class NPCMove : NetworkBehaviour {
 
 	private void Update()
     {
+		if (boostTimer > 0) {
+			boostTimer -= Time.deltaTime;
+			if (boostTimer <= 0) {
+				boostTimer = 0;
+				_navMeshAgent.speed /= _mult;
+			}
+		}
 		if (_navMeshAgent.remainingDistance < 0.5f && !chasing)
         {
             _navMeshAgent.SetDestination(_destination[(cur++) % numDestinations].transform.position);
@@ -72,6 +82,7 @@ public class NPCMove : NetworkBehaviour {
 		GameObject other = col.gameObject;
 		Player game = other.transform.parent.GetComponent<Player>();
 		if (game != null) {
+			game.Warn();
 			chasing = true;
 			_navMeshAgent.SetDestination(other.transform.position);
 			target = other.transform;
@@ -84,5 +95,13 @@ public class NPCMove : NetworkBehaviour {
 			chasing = false;
 			_navMeshAgent.SetDestination(_destination[(cur++) % numDestinations].transform.position);
 		}
+	}
+
+	public void Boost(float multiplier, float timer) {
+		if (boostTimer <= 0) {
+			_navMeshAgent.speed *= multiplier;
+			_mult = multiplier;
+		}
+		boostTimer += timer;
 	}
 }

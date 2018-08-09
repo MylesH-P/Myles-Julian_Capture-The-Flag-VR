@@ -19,7 +19,7 @@ public class CaptureDaFlag : NetworkBehaviour {
 	}
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.parent.GetComponent<Player>() != null) {
+		if (other.transform.GetComponentInParent<Player>() != null) {
 			Capture(other.transform.parent.gameObject);
 		}
  	}
@@ -27,8 +27,9 @@ public class CaptureDaFlag : NetworkBehaviour {
 	public void Capture(GameObject captor) {
 		captor.GetComponent<Player>()._hasFlag = true;
 		captor.GetComponent<Player>()._flag = gameObject;
+		captor.GetComponent<Player>().CatchHandle();
 		caught = true;
-		transform.parent = captor.transform;
+		transform.parent = captor.transform.GetChild(0);
 		transform.localPosition = new Vector3(0, 2, 0);
 	}
     

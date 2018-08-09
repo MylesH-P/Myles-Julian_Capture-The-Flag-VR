@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114167419822711272}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 1264733689962342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4543758616438860}
   m_Father: {fileID: 4680606296409864}
@@ -345,6 +345,7 @@ MonoBehaviour:
   - {fileID: 4050328909033552}
   - {fileID: 4646422191359236}
   - {fileID: 4450724877591992}
+  target: {fileID: 0}
 --- !u!114 &114948804732141518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,7 +425,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 5
   m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 120
